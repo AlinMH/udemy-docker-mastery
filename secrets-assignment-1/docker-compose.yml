@@ -15,7 +15,8 @@ services:
     image: postgres:12.1
     environment:
       POSTGRES_PASSWORD_FILE: /run/secrets/psql_password
-      POSTGRES_USER_FILE: /run/secrets/psql_user
+    secrets:
+      - psql_password
     volumes:
       - drupal-data:/var/lib/postgresql/data
 
@@ -27,7 +28,5 @@ volumes:
   drupal-data:
 
 secrets:
-  psql_user:
-    external: true
   psql_password:
     external: true
